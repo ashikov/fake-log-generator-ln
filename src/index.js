@@ -46,7 +46,7 @@ const generateLog = (length = 10) => {
     ];
 
     const array = new Array(+length);
-    const emptyLines = _.fill(array, undefined);
+    const emptyLines = _.fill(array, null);
 
     const lines = emptyLines.map((item) => {
       const date = getRandomDate(new Date(2021, 0, 1), new Date());
