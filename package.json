@@ -1,0 +1,27 @@
+{
+  "name": "fake-log-generator-ln",
+  "version": "0.0.1",
+  "description": "Generates fake logs and print it to STDOUT",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "fakelog": "bin/fakelog.js"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "logs",
+    "faker"
+  ],
+  "author": "Roman Ashikov",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
