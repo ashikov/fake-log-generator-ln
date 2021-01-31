@@ -1,6 +1,5 @@
 # Simple log generator
 
----
 ## Requirements
 
 * nodejs
