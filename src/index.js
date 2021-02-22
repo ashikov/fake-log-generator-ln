@@ -14,7 +14,7 @@ const formatDate = (date) => {
 
   let month = date.getMonth() + 1;
   if (month < 10) {
-      month = `0${month}`;
+    month = `0${month}`;
   }
 
   let hours = date.getHours().toString();
@@ -35,37 +35,33 @@ const formatDate = (date) => {
   return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
 };
 
+const messages = [
+  'ssh: successfully authenticated',
+  'ssh: successfully logged out',
+  'ssh: connection dropped by timeout',
+  'ssh: invalid connection'
+];
 
 const generateLog = (length = 10) => {
+  const array = new Array(+length);
+  const emptyLines = _.fill(array, null);
 
-    const messages = [
-        'ssh: successfully authenticated',
-        'ssh: successfully logged out',
-        'ssh: connection dropped by timeout',
-        'ssh: invalid connection'
-    ];
+  const lines = emptyLines.map((item) => {
+    const date = getRandomDate(new Date(2021, 0, 1), new Date());
+    const ip = getRandomIp();
+    const messageIndex = _.random(0, messages.length - 1);
+    const message = messages[messageIndex];
 
-    const array = new Array(+length);
-    const emptyLines = _.fill(array, null);
+    return { date, data:  `localhost ${message} from ${ip}`};
+  });
 
-    const lines = emptyLines.map((item) => {
-      const date = getRandomDate(new Date(2021, 0, 1), new Date());
-      const ip = getRandomIp();
-      const messageIndex = _.random(0, messages.length - 1);
-      const message = messages[messageIndex];
+  const sortedLines = _.sortBy(lines, ({ date }) => date);
 
-      return { date, data:  `localhost ${message} from ${ip}`};
-    });
-    
-    const sortedLines = _.sortBy(lines, ({ date }) => date);
-    
-    const result = sortedLines.map(({ date, data }) => {
-       const formattedDate = formatDate(date);
+  return sortedLines.map(({ date, data }) => {
+      const formattedDate = formatDate(date);
 
-       return `${formattedDate} ${data}`;
-    });
-    
-    return result;
+      return `${formattedDate} ${data}`;
+  }).join('\n');
 };
 
 export default generateLog;
